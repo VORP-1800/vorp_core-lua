@@ -48,6 +48,7 @@ end
 
 -- PLAYERSPAWN
 AddEventHandler('playerSpawned', function()
+    exports.spawnmanager:setAutoSpawn(false)
     DoScreenFadeOut(0)
     Citizen.InvokeNative(0x1E5B70E53DB661E5, 0, 0, 0, T.Hold, T.Load, T.Almost) --_DISPLAY_LOADING_SCREENS
     DisplayRadar(false)
@@ -192,10 +193,10 @@ end)
 CreateThread(function()
     repeat Wait(5000) until LocalPlayer.state.IsInSession
     while true do
-        local sleep = 1000
-        local pped = PlayerPedId()
 
-        sleep = 0
+        local pped = PlayerPedId()
+        local sleep = 0
+
         if IsControlPressed(0, 0xCEFD9220) then
             active = true
             CoreAction.Utils.setPVP()
@@ -229,6 +230,9 @@ CreateThread(function()
         DisableControlAction(0, 0xCF8A4ECA, true) -- Disable hud
         DisableControlAction(0, 0x9CC7A1A4, true) -- disable special ability when open hud
         DisableControlAction(0, 0x1F6D95E5, true) -- diable f4 key that contains HUD
+        if IsUiappActiveByHash(`MAP`) == 1 then -- only when map is open incase someone needs to use the X key
+            DisableControlAction(0, `INPUT_FRONTEND_RS`, true) -- disables the x button that freezes players when in the big map
+        end
     end
 end)
 
