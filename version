@@ -1,3 +1,16 @@
+<3.3>
+- added multi jobs system (see docs for more info)
+- new columns needed to be added to the database (see commits for more info or txAdmin MariaDB.sql file)
+- faster character spawn to server (less time to spawn)
+- config to disable initial loading screen
+- fixed some translations
+<3.2>
+- refactor health and stamina recharger
+- added three new notification types 
+- added webhook for player death
+- small fixes and optimizations were made 
+- added support to cancel pressing X when map is open that freeze players 
+- fixed export setAutoRespawn (important to update)
 <3.1>
 - fixed character creation instance 
 - fixed skills new level up 
